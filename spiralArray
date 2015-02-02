@@ -1,0 +1,30 @@
+<?php
+//input array
+$s_array = array(array('A','b','c','d','e','1'), array('F','g','h','i','j','2'), array('K','l','m','n','o','3'), array('P','q','r','s','t','4'));
+$n=4; $m=6;
+
+printSpiralArray($s_array,$n,$m);
+
+function printSpiralArray($s_array,$n,$m) {
+  $direction=0; $top=0; $bottom=$n-1; $left=0; $right=$m-1;
+  while ($left<=$right&&$top<=$bottom) {
+    if ($direction==0) {
+      for ($i=$left; $i<=$right; $i++)
+        echo $s_array[$top][$i]." ";
+      $top++;
+    } elseif ($direction==1) {
+      for($i=$top; $i<=$bottom; $i++)
+        echo $s_array[$i][$right]." ";
+      $right--;
+    } elseif ($direction==2) {
+      for($i=$right; $i>=$left; $i--) 
+        echo $s_array[$bottom][$i]." ";
+      $bottom--;
+    } elseif ($direction==3) {
+      for($i=$bottom; $i>=$top; $i--)
+        echo $s_array[$i][$left]." ";
+      $left++;
+	}
+    $direction=($direction+1)%4;
+  }
+}
